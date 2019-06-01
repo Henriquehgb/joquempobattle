@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="battle.js"></script>
+    <script type="text/javascript" src="UI.js"></script>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="640" height="480" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML5 canvas tag.</canvas>
+
+        <div>
+            <button onclick="clickRock()">O</button>
+            <button onclick="clickPaper()">[]</button>
+            <button onclick="clickScissor()">\/</button>            
+        </div>
+</body>
+
+</html>
+
+<script>
+
+        var c = document.getElementById('myCanvas');
+        var cc = c.getContext('2d');
+        var kingdom = 1;
+        var intervalSpan = 70;
+        setInterval(update, intervalSpan);
+
+        var battle = new JoquempoBattle();
+
+        function update() {
+            cc.clearRect(0, 0, c.width, c.height);
+            battle.update(intervalSpan);
+            drawBattle(c, cc, battle);
+        }
+
+        function clickRock(){
+            battle.sendRock(kingdom);
+        }
+
+        function clickPaper(){
+            battle.sendPaper(kingdom);
+        }
+
+        function clickScissor(){
+            battle.sendScissor(kingdom);            
+        }
+</script>
